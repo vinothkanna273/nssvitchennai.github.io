@@ -55,7 +55,7 @@ header {
   right: 0;
   z-index: 1000;
   /* background-color: var(--theme-light-color); */
-  background-color: #F1FAEE;
+  background-color: #f1faee;
 }
 
 /* header */
@@ -80,7 +80,7 @@ header {
     width: 280px;
     min-height: calc(100vh - 78px);
     /* background-color: var(--theme-light-color); */
-    background-color: #F1FAEE;
+    background-color: #f1faee;
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
@@ -92,8 +92,8 @@ header {
     right: 0;
   }
 }
-.nav-logo{
-    width: 8vh;
+.nav-logo {
+  width: 8vh;
 }
 .navbar__list {
   display: flex;
@@ -136,7 +136,7 @@ header {
   gap: 1rem;
   padding: 1.5rem;
   /* background-color: var(--theme-light-color); */
-  background-color: #F1FAEE;
+  background-color: #f1faee;
   border-radius: 1rem;
   box-shadow: 0 0 18px rgba(0, 0, 0, 0.122);
   z-index: 999;
@@ -193,12 +193,10 @@ header {
   transform: rotate(-90deg) translateX(5px);
 }
 
-
-
 /* hero-section */
-.hero-section{
-    height: 95vh;
-    background-color: #696969;
+.hero-section {
+  height: 95vh;
+  background-color: #696969;
 }
 /* slider */
 
@@ -237,8 +235,8 @@ li a.credits {
   bottom: 20px;
 }
 
-.rslides li img{
-    height: 90vh;
+.rslides li img {
+  height: 90vh;
 }
 
 /* Slider navigation */
@@ -285,31 +283,163 @@ li a.credits {
 }
 
 /* hero-heading */
-.hero-heading-wrapper{
-    height: 90vh;
-    width: auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    column-gap: 10px;
-    z-index: 10;
-    position: relative;
-    margin-top: 5vh;
+.hero-heading-wrapper {
+  height: 90vh;
+  width: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  column-gap: 10px;
+  z-index: 10;
+  position: relative;
+  margin-top: 5vh;
 }
-.hero-heading{
-    font-size: 4.75vw;
-    font-weight: 700;
-    color: whitesmoke;
+.hero-heading {
+  font-size: 4.75vw;
+  font-weight: 700;
+  color: whitesmoke;
 }
-.hero-heading-line{
-    height: 10px;
-    width: 75vw;
-    background-color: whitesmoke;
-    position: absolute;
-    top: 50%;
-    right: 0%;
+.hero-heading-line {
+  height: 10px;
+  width: 75vw;
+  background-color: whitesmoke;
+  position: absolute;
+  top: 50%;
+  right: 0%;
 }
-.hero-heading-bottom{
-    transform: translate(-7.5vw,3vh);
+.hero-heading-bottom {
+  transform: translate(-7.5vw, 3vh);
+}
+
+/* photo-gallery */
+.gallery-row {
+  display: flex;
+  flex-wrap: wrap;
+}
+.gallery-item {
+  align-items: center;
+  display: flex;
+  overflow: hidden;
+  position: relative;
+}
+.g-large {
+  width: 60%;
+}
+.g-small {
+  width: 40%;
+}
+.g-full {
+  width: 100%;
+}
+.gallery-image {
+  height: 30vh;
+  max-height: 30em;
+  min-height: 20em;
+  width: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  transition: transform 0.25s ease;
+}
+.gallery-image::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  opacity: 0.6;
+  transition: opacity 0.25s ease;
+  pointer-events: none;
+}
+.gallery-item:hover .gallery-image {
+  transform: scale(1.1);
+}
+.gallery-item:hover .gallery-image::before {
+  opacity: 0;
+}
+@media screen and (max-width: 850px) {
+  .g-large, .g-small {
+    width: 50%;
+  }
+}
+@media screen and (max-width: 736px) {
+  .gallery-image {
+    height: 16em;
+    max-height: none;
+    min-height: 0;
+  }
+}
+@media screen and (max-width: 480px) {
+  .gallery-image {
+    height: 20em;
+  }
+  .g-large, .g-small {
+    width: 100% !important;
+  }
+}
+
+/* flip card section */
+.flip-cards{
+  padding: 60px;
+  margin: auto;
+}
+.rows{
+  width: 90vw;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.card {
+  height: 400px;
+  width: 400px;
+  transform-style: preserve-3d;
+  perspective: 600px;
+  transition: 0.5s;
+  border-radius: 3%;
+  overflow: hidden;
+  margin: 30px;
+}
+.card:hover .card-front {
+  transform: rotateY(-180deg);
+}
+.card:hover .card-back {
+  transform: rotateY(0deg);
+}
+.card-front {
+  height: 100%;
+  width: 100%;
+  background-position: 50% 50%;
+  background-size: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #000000;
+  backface-visibility: hidden;
+  transform: rotateY(0deg);
+  transition: 0.5s;
+}
+.card-back {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #000000;
+  backface-visibility: hidden;
+  transform: rotateY(180deg);
+  transition: 0.5s;
+  color: #ffffff;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.card-back h2 {
+  font-size: 34px;
+}
+.card-back h2 span {
+  font-size: 20px;
 }
