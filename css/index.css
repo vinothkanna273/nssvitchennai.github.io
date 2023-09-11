@@ -217,7 +217,6 @@ header {
   content: "";
   display: block;
   width: 540px;
-  background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/1356355/slider-overlay.png");
   background-repeat: no-repeat;
   background-position: top left;
   background-size: 100%;
@@ -237,6 +236,21 @@ li a.credits {
 
 .rslides li img {
   height: 90vh;
+}
+.rslides::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  opacity: 0.4;
+}
+@media screen and (max-width: 900px) {
+  .rslides li img {
+    height: 90vh;
+  }
 }
 
 /* Slider navigation */
@@ -323,15 +337,6 @@ li a.credits {
   overflow: hidden;
   position: relative;
 }
-.g-large {
-  width: 60%;
-}
-.g-small {
-  width: 40%;
-}
-.g-full {
-  width: 100%;
-}
 .gallery-image {
   height: 30vh;
   max-height: 30em;
@@ -342,23 +347,37 @@ li a.credits {
   background-size: cover;
   transition: transform 0.25s ease;
 }
-.gallery-image::before {
+.gallery-item::before {
   content: "";
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: black;
-  opacity: 0.6;
+  opacity: 0.8;
   transition: opacity 0.25s ease;
   pointer-events: none;
+}
+.gallery-item:nth-child(even)::before{
+  background-color: #6fc3df;
+}
+.gallery-item:nth-child(odd)::before{
+  background-color: #ec8d81;
 }
 .gallery-item:hover .gallery-image {
   transform: scale(1.1);
 }
-.gallery-item:hover .gallery-image::before {
+.gallery-item:hover .gallery-item::before {
   opacity: 0;
+}
+.g-large {
+  width: 60%;
+}
+.g-small {
+  width: 40%;
+}
+.g-full {
+  width: 100%;
 }
 @media screen and (max-width: 850px) {
   .g-large, .g-small {
@@ -383,23 +402,23 @@ li a.credits {
 
 /* flip card section */
 .flip-cards{
-  padding: 60px;
   margin: auto;
+  padding: 60px 30px 60px 30px;
 }
 .rows{
   width: 90vw;
   display: flex;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
   justify-content: center;
+  margin: auto;
 }
 .card {
   height: 400px;
   width: 400px;
   transform-style: preserve-3d;
   perspective: 600px;
-  transition: 0.5s;
+  transition: 1s;
   border-radius: 3%;
-  overflow: hidden;
   margin: 30px;
 }
 .card:hover .card-front {
@@ -419,7 +438,7 @@ li a.credits {
   background-color: #000000;
   backface-visibility: hidden;
   transform: rotateY(0deg);
-  transition: 0.5s;
+  transition: 1s;
 }
 .card-back {
   height: 100%;
@@ -430,7 +449,7 @@ li a.credits {
   background-color: #000000;
   backface-visibility: hidden;
   transform: rotateY(180deg);
-  transition: 0.5s;
+  transition: 1s;
   color: #ffffff;
   text-align: center;
   display: flex;
@@ -442,4 +461,32 @@ li a.credits {
 }
 .card-back h2 span {
   font-size: 20px;
+}
+@media screen and (max-width: 900px) {
+  .card {
+    height: 320px;
+    width: 320px;
+    margin: 20px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .card {
+    height: 280px;
+    width: 280px;
+    margin: 16px;
+  }
+}
+@media screen and (max-width: 610px) {
+  .card {
+    height: 80vw;
+    width: 80vw;
+  }
+  .rows{
+    width: 95vw;
+    flex-direction: column;
+    align-items: center;
+  }
+  .flip-cards{
+    padding: 60px 0px 60px 0px;
+  }
 }
